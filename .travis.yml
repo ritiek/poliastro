@@ -55,15 +55,18 @@ before_install:
 
 install:
   - pip install numpy  # Required
+  - pip install pytest-cov
   - pip install .  # Test installation correctness
   - pip install .[dev]  # Test development dependencies
 
 before_script:
   - pycodestyle setup.py src/  # Check PEP8 compliance
   - if [[ $RUN_MYPY == 'true' ]]; then mypy --ignore-missing-imports --check-untyped-defs src/; fi
+  - cd src
 
 script:
-  - python setup.py test -vv  # Test against installed code
+  #- python setup.py test -vv  # Test against installed code
+  - pytest --cov
   - if [[ $RUN_NTB == 'true' ]]; then sphinx-build -vW -b html docs/source _HTMLTest; fi  # Test docs build
 
 after_success:
@@ -71,7 +74,7 @@ after_success:
   - pip uninstall poliastro -y
   - pip install -e .
 
-  - NUMBA_DISABLE_JIT=1 python setup.py test -a "--cov"
+  #- NUMBA_DISABLE_JIT=1 python setup.py test -a "--cov"
 
   # Publish coverage
   - pip install codecov

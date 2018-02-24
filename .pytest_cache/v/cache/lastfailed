@@ -1,0 +1,5 @@
+{
+  "src/poliastro/maneuver.py::poliastro.maneuver.Maneuver": true,
+  "src/poliastro/twobody/angles.py::poliastro.twobody.angles.M_to_nu": true,
+  "src/poliastro/twobody/orbit.py::poliastro.twobody.orbit.Orbit.sample": true
+}
