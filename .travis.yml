@@ -66,7 +66,7 @@ before_script:
 
 script:
   #- python setup.py test -vv  # Test against installed code
-  - pytest --cov
+  - pytest --cov=.
   - if [[ $RUN_NTB == 'true' ]]; then sphinx-build -vW -b html docs/source _HTMLTest; fi  # Test docs build
 
 after_success:
